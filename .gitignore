@@ -1,17 +1,17 @@
-.settings/
-/.gradle
-/build/
-/target/
-*.class
+krusty-skeleton/.settings/
+krusty-skeleton/.gradle
+krusty-skeleton/build/
+krusty-skeleton/target/
+krusty-skeleton/*.class
 .metadata/
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
+krusty-skeleton/bin/
+krusty-skeleton/tmp/
+krusty-skeleton/*.tmp
+krusty-skeleton/*.bak
+krusty-skeleton/*.swp
+krusty-skeleton/*~.nib
+krusty-skeleton/local.properties
 
-.loadpath
-.recommenders
+krusty-skeleton/.loadpath
+krusty-skeleton/.recommenders
 
