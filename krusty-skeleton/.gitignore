@@ -1,9 +1,9 @@
-/.settings
+.settings
 /.gradle
 /build/
 /target/
 *.class
-/.metadata
+.metadata
 bin/
 tmp/
 *.tmp
