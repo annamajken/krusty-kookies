@@ -1,0 +1,17 @@
+.settings/
+/.gradle
+/build/
+/target/
+*.class
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+.loadpath
+.recommenders
+
