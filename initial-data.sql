@@ -87,13 +87,13 @@ INSERT INTO Customers(name, address) VALUES
 ('Skånekakor AB', 'Perstorp');
 
 -- Inserts data into the Products table --
-INSERT INTO Products(name) VALUES
-('Almond delight'),
-('Amneris'),
-('Berliner'),
-('Nut cookie'),
-('Nut ring'),
-('Tango');
+INSERT INTO Products(name, price) VALUES
+('Almond delight', 20),
+('Amneris', 30),
+('Berliner', 30),
+('Nut cookie', 45),
+('Nut ring', 20),
+('Tango', 25);
 
 -- Inserts data into the Ingredients table --
 INSERT INTO Ingredients(name, quantity, unit) VALUES
