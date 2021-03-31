@@ -75,7 +75,47 @@ values('Tango', 'Sugar', 250);
 insert into Recipes(productName, ingredient, amount)
 values('Tango', 'Vanilla', 2);
 
+-- Inserts data into the Customers table --
+INSERT INTO Customers(name, address) VALUES
+('Finkakor AB', 'Helsingborg'),
+('Småbröd AB', 'Malmö'),
+('Kaffebröd AB', 'Landskrona'),
+('Bjudkakor AB', 'Ystad'),
+('Kalaskakor AB', 'Trelleborg'),
+('Partykakor AB', 'Kristianstad'),
+('Gästkakor AB', 'Hässleholm'),
+('Skånekakor AB', 'Perstorp');
 
+-- Inserts data into the Products table --
+INSERT INTO Products(name) VALUES
+('Almond delight'),
+('Amneris'),
+('Berliner'),
+('Nut cookie'),
+('Nut ring'),
+('Tango');
+
+-- Inserts data into the Ingredients table --
+INSERT INTO Ingredients(name, quantity, unit) VALUES
+('Bread crumbs', 100000, 'g'),
+('Butter', 100000, 'g'),
+('Chocolate', 100000, 'g'),
+('Chopped almonds', 100000, 'g'),
+('Cinnamon', 100000, 'g'),
+('Egg whites', 100000, 'ml'),
+('Eggs', 100000, 'g'),
+('Fine-ground nuts', 100000, 'g'),
+('Flour', 100000, 'g'),
+('Ground, roasted nuts', 100000, 'g'),
+('Icing sugar', 100000, 'g'),
+('Marzipan', 100000, 'g'),
+('Potato starch', 100000, 'g'),
+('Roasted, chopped nuts', 100000, 'g'),
+('Sodium bicarbonate', 100000, 'g'),
+('Sugar', 100000, 'g'),
+('Vanilla sugar', 100000, 'g'),
+('Vanilla', 100000, 'g'),
+('Wheat flour', 100000, 'g');
 
 
 
