@@ -3,81 +3,81 @@
 -- Inserts data into the Recipes table --
 
 -- Almond Delight --
-insert into Recipes(productName, ingredient, amount)
-values('Almond Delight', 'Butter', 400);
-insert into Recipes(productName, ingredient, amount)
-values('Almond Delight', 'Chopped almonds', 279);
-insert into Recipes(productName, ingredient, amount)
-values('Almond Delight', 'Cinnamon', 10);
-insert into Recipes(productName, ingredient, amount)
-values('Almond Delight', 'Flour', 400);
-insert into Recipes(productName, ingredient, amount)
-values('Almond Delight', 'Sugar', 270);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Almond Delight', 'Butter', 400);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Almond Delight', 'Chopped almonds', 279);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Almond Delight', 'Cinnamon', 10);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Almond Delight', 'Flour', 400);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Almond Delight', 'Sugar', 270);
 
 -- Amneris --
-insert into Recipes(productName, ingredient, amount)
-values('Amneris', 'Butter', 250);
-insert into Recipes(productName, ingredient, amount)
-values('Amneris', 'Eggs', 250);
-insert into Recipes(productName, ingredient, amount)
-values('Amneris', 'Marzipan', 750);
-insert into Recipes(productName, ingredient, amount)
-values('Amneris', 'Potato starch', 25); 
-insert into Recipes(productName, ingredient, amount)
-values('Amneris', 'Wheat flour', 25);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Amneris', 'Butter', 250);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Amneris', 'Eggs', 250);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Amneris', 'Marzipan', 750);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Amneris', 'Potato starch', 25); 
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Amneris', 'Wheat flour', 25);
 
 -- Berliner --
-insert into Recipes(productName, ingredient, amount)
-values('Berliner', 'Butter', 250);
-insert into Recipes(productName, ingredient, amount)
-values('Berliner', 'Chocolate', 50);
-insert into Recipes(productName, ingredient, amount)
-values('Berliner', 'Eggs', 50);
-insert into Recipes(productName, ingredient, amount)
-values('Berliner', 'Flour', 350);
-insert into Recipes(productName, ingredient, amount)
-values('Berliner', 'Icing sugar', 100);
-insert into Recipes(productName, ingredient, amount)
-values('Berliner', 'Vanilla sugar', 5);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Berliner', 'Butter', 250);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Berliner', 'Chocolate', 50);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Berliner', 'Eggs', 50);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Berliner', 'Flour', 350);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Berliner', 'Icing sugar', 100);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Berliner', 'Vanilla sugar', 5);
 
 -- Nut Cookie --
 
-insert into Recipes(productName, ingredient, amount)
-values('Nut Cookie', 'Bread crumbs', 125);
-insert into Recipes(productName, ingredient, amount)
-values('Nut Cookie', 'Chocolate', 50);
-insert into Recipes(productName, ingredient, amount)
-values('Nut Cookie', 'Egg whites', 350);
-insert into Recipes(productName, ingredient, amount)
-values('Nut Cookie', 'Fine-ground nuts', 750);
-insert into Recipes(productName, ingredient, amount)
-values('Nut Cookie', 'Ground, roasted nuts', 625);
-insert into Recipes(productName, ingredient, amount)
-values('Nut Cookie', 'Sugar', 375);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Cookie', 'Bread crumbs', 125);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Cookie', 'Chocolate', 50);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Cookie', 'Egg whites', 350);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Cookie', 'Fine-ground nuts', 750);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Cookie', 'Ground, roasted nuts', 625);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Cookie', 'Sugar', 375);
 
 -- Nut Ring --
-insert into Recipes(productName, ingredient, amount)
-values('Nut Ring', 'Butter', 450);
-insert into Recipes(productName, ingredient, amount)
-values('Nut Ring', 'Flour', 450);
-insert into Recipes(productName, ingredient, amount)
-values('Nut Ring', 'Roasted, chopped nuts', 225);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Ring', 'Butter', 450);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Ring', 'Flour', 450);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Nut Ring', 'Roasted, chopped nuts', 225);
 
 -- Tango --
-insert into Recipes(productName, ingredient, amount)
-values('Tango', 'Butter', 200);
-insert into Recipes(productName, ingredient, amount)
-values('Tango', 'Flour', 300);
-insert into Recipes(productName, ingredient, amount)
-values('Tango', 'Sodium bicarbonate', 4);
-insert into Recipes(productName, ingredient, amount)
-values('Tango', 'Sugar', 250);
-insert into Recipes(productName, ingredient, amount)
-values('Tango', 'Vanilla', 2);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Tango', 'Butter', 200);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Tango', 'Flour', 300);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Tango', 'Sodium bicarbonate', 4);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Tango', 'Sugar', 250);
+INSERT INTO Recipes(productName, ingredient, amount)
+VALUES('Tango', 'Vanilla', 2);
 
 -- Inserts data into the Customers table --
-INSERT INTO Customers(name, address) VALUES
-('Finkakor AB', 'Helsingborg'),
+INSERT INTO Customers(name, address) 
+VALUES('Finkakor AB', 'Helsingborg'),
 ('Småbröd AB', 'Malmö'),
 ('Kaffebröd AB', 'Landskrona'),
 ('Bjudkakor AB', 'Ystad'),
@@ -87,8 +87,8 @@ INSERT INTO Customers(name, address) VALUES
 ('Skånekakor AB', 'Perstorp');
 
 -- Inserts data into the Products table --
-INSERT INTO Products(name, price) VALUES
-('Almond delight', 20),
+INSERT INTO Products(name, price)
+VALUES('Almond delight', 20),
 ('Amneris', 30),
 ('Berliner', 30),
 ('Nut cookie', 45),
@@ -96,8 +96,8 @@ INSERT INTO Products(name, price) VALUES
 ('Tango', 25);
 
 -- Inserts data into the Ingredients table --
-INSERT INTO Ingredients(name, quantity, unit) VALUES
-('Bread crumbs', 100000, 'g'),
+INSERT INTO Ingredients(name, quantity, unit)
+VALUES('Bread crumbs', 100000, 'g'),
 ('Butter', 100000, 'g'),
 ('Chocolate', 100000, 'g'),
 ('Chopped almonds', 100000, 'g'),
@@ -113,14 +113,6 @@ INSERT INTO Ingredients(name, quantity, unit) VALUES
 ('Roasted, chopped nuts', 100000, 'g'),
 ('Sodium bicarbonate', 100000, 'g'),
 ('Sugar', 100000, 'g'),
-('Vanilla sugar', 100000, 'g'),
 ('Vanilla', 100000, 'g'),
+('Vanilla sugar', 100000, 'g'),
 ('Wheat flour', 100000, 'g');
-
-
-
-
-
-
-
-
