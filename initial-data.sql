@@ -87,32 +87,32 @@ VALUES('Finkakor AB', 'Helsingborg'),
 ('Skånekakor AB', 'Perstorp');
 
 -- Inserts data into the Products table --
-INSERT INTO Products(name, price)
-VALUES('Almond delight', 20),
-('Amneris', 30),
-('Berliner', 30),
-('Nut cookie', 45),
-('Nut ring', 20),
-('Tango', 25);
+INSERT INTO Products(productName)
+VALUES('Almond delight'),
+('Amneris'),
+('Berliner'),
+('Nut cookie'),
+('Nut ring'),
+('Tango');
 
 -- Inserts data into the Ingredients table --
 INSERT INTO Ingredients(name, quantity, unit)
-VALUES('Bread crumbs', 100000, 'g'),
-('Butter', 100000, 'g'),
-('Chocolate', 100000, 'g'),
-('Chopped almonds', 100000, 'g'),
-('Cinnamon', 100000, 'g'),
-('Egg whites', 100000, 'ml'),
-('Eggs', 100000, 'g'),
-('Fine-ground nuts', 100000, 'g'),
-('Flour', 100000, 'g'),
-('Ground, roasted nuts', 100000, 'g'),
-('Icing sugar', 100000, 'g'),
-('Marzipan', 100000, 'g'),
-('Potato starch', 100000, 'g'),
-('Roasted, chopped nuts', 100000, 'g'),
-('Sodium bicarbonate', 100000, 'g'),
-('Sugar', 100000, 'g'),
-('Vanilla', 100000, 'g'),
-('Vanilla sugar', 100000, 'g'),
-('Wheat flour', 100000, 'g');
+VALUES('Bread crumbs', 500000, 'g'),
+('Butter', 500000, 'g'),
+('Chocolate', 500000, 'g'),
+('Chopped almonds', 500000, 'g'),
+('Cinnamon', 500000, 'g'),
+('Egg whites', 500000, 'ml'),
+('Eggs', 500000, 'g'),
+('Fine-ground nuts', 500000, 'g'),
+('Flour', 500000, 'g'),
+('Ground, roasted nuts', 500000, 'g'),
+('Icing sugar', 500000, 'g'),
+('Marzipan', 500000, 'g'),
+('Potato starch', 500000, 'g'),
+('Roasted, chopped nuts', 500000, 'g'),
+('Sodium bicarbonate', 500000, 'g'),
+('Sugar', 500000, 'g'),
+('Vanilla sugar', 500000, 'g'),
+('Vanilla', 500000, 'g'),
+('Wheat flour', 500000, 'g');
