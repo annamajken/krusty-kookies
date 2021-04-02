@@ -77,14 +77,14 @@ VALUES('Tango', 'Vanilla', 2);
 
 -- Inserts data into the Customers table --
 INSERT INTO Customers(name, address) 
-VALUES('Finkakor AB', 'Helsingborg'),
-('Småbröd AB', 'Malmö'),
+VALUES('Bjudkakor AB', 'Ystad'),
+('Finkakor AB', 'Helsingborg'),
+('Gästkakor AB', 'Hässleholm'),
 ('Kaffebröd AB', 'Landskrona'),
-('Bjudkakor AB', 'Ystad'),
 ('Kalaskakor AB', 'Trelleborg'),
 ('Partykakor AB', 'Kristianstad'),
-('Gästkakor AB', 'Hässleholm'),
-('Skånekakor AB', 'Perstorp');
+('Skånekakor AB', 'Perstorp'),
+('Småbröd AB', 'Malmö');
 
 -- Inserts data into the Products table --
 INSERT INTO Products(productName)
