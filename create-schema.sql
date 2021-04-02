@@ -20,7 +20,7 @@ PRIMARY KEY (name)
 
 CREATE TABLE Products (
 productID int AUTO_INCREMENT,
-name varChar(30),
+productName varChar(30),
 price int,
 PRIMARY KEY (productID)
 );
