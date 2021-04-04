@@ -3,6 +3,9 @@ package krusty;
 import spark.Request;
 import spark.Response;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,12 +18,19 @@ public class Database {
 	 */
 	private static final String jdbcString = "jdbc:mysql://localhost/krusty";
 
+	private Connection connection;
+	
 	// For use with MySQL or PostgreSQL
 	private static final String jdbcUsername = "<CHANGE ME>";
 	private static final String jdbcPassword = "<CHANGE ME>";
 
 	public void connect() {
-		// Connect to database here
+		try {
+			connection = DriverManager.getConnection(jdbcString, jdbcUsername, jdbcPassword);
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+		}
 	}
 
 	// TODO: Implement and change output in all methods below!
