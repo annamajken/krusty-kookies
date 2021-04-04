@@ -1,3 +1,5 @@
+-- The SQL statements needed to create the tables of database krusty --
+
 SET FOREIGN_KEY_CHECKS = 0;
 drop table if exists Ingredients;
 drop table if exists Products;
