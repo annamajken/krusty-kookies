@@ -63,18 +63,19 @@ public class Database {
 				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no')"
 				+ " FROM Pallets LEFT JOIN Products ON Products.productID = Pallets.productID"
 				+ " LEFT JOIN Orders ON Orders.orderNbr = Products.orderNbr"
-				+ " LEFT JOIN Customers ON Orders.customer = customer.customerID";
+				+ " LEFT JOIN Customers ON Orders.customer = customer.customerID"
+				+ " WHERE 1=1";
 		
 		if (req.queryParams("cookie") != null) {
-			sql += " WHERE productName = ?";
+			sql += " AND productName = ?";
 			values.add(req.queryParams("cookie"));
 		}
 		if (req.queryParams("from") != null) {
-			sql += values.size() > 0 ? " AND dateAndTimeOfProduction > ?" : " WHERE dateAndTimeOfProduction > ?";
+			sql += "AND dateAndTimeOfProduction > ?";
 			values.add(req.queryParams("from"));
 		}
 		if (req.queryParams("to") != null) {
-			sql += values.size() > 0 ? " AND dateAndTimeOfProduction < ?" : " WHERE dateAndTimeOfProduction < ?";
+			sql += " AND dateAndTimeOfProduction < ?";
 			values.add(req.queryParams("to"));
 		}
 
@@ -94,6 +95,10 @@ public class Database {
 
 	public String reset(Request req, Response res) {
 		return "{}";
+	}
+	
+	private void insert() {
+		
 	}
 
 	public String createPallet(Request req, Response res) {
