@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import static krusty.Jsonizer.toJson;
@@ -121,6 +123,28 @@ public class Database {
 	}
 	
 	private void updateIngredients(String product) {
-
+		Map<String, Integer> values = new HashMap<String, Integer>();
+		try (PreparedStatement ps = connection.prepareStatement("SELECT rawMaterial, amount"
+				+ " FROM Recipes LEFT JOIN Products on Recipes.productID = Products.productID"
+				+ " WHERE Products.productName = ?")) {
+			ps.setString(1, product);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				values.put(rs.getString("rawMaterial"), rs.getInt("amount"));
+			}
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+		}
+		try (PreparedStatement ps = connection.prepareStatement("ALTER TABLE Ingredients SET amount = amount - ? WHERE rawMaterial = ?")) {
+			for (Entry<String, Integer> entry : values.entrySet()) {
+				ps.setInt(1, entry.getValue());
+				ps.setString(2, entry.getKey());
+				ps.executeUpdate();
+			}
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+		}
 	}
 }
