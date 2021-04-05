@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
@@ -55,7 +56,38 @@ public class Database {
 	}
 
 	public String getPallets(Request req, Response res) {
-		return "{\"pallets\":[]}";
+		ArrayList<String> values = new ArrayList<String>();
+		String sql = "SELECT palletNbr AS id, cookieName AS cookie,"
+				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no')"
+				+ " FROM Pallets LEFT JOIN Products ON Products.productID = Pallets.productID"
+				+ " LEFT JOIN Orders ON Orders.orderNbr = Products.orderNbr"
+				+ " LEFT JOIN Customers ON Orders.customer = customer.customerID";
+		
+		if (req.queryParams("cookie") != null) {
+			sql += " WHERE productName = ?";
+			values.add(req.queryParams("cookie"));
+		}
+		if (req.queryParams("from") != null) {
+			sql += values.size() > 0 ? " AND dateAndTimeOfProduction > ?" : " WHERE dateAndTimeOfProduction > ?";
+			values.add(req.queryParams("from"));
+		}
+		if (req.queryParams("to") != null) {
+			sql += values.size() > 0 ? " AND dateAndTimeOfProduction < ?" : " WHERE dateAndTimeOfProduction < ?";
+			values.add(req.queryParams("to"));
+		}
+
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			for (int i = 0; i < values.size(); i++) {
+				ps.setString(i+1, values.get(i)); 
+			}
+			ResultSet rs = ps.executeQuery();
+			String json = JSONizer.toJSON(rs, "pallets");
+			return json;
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+			return "{ \r\n  \"status\": \"error\" \r\n}";
+		}
 	}
 
 	public String reset(Request req, Response res) {
@@ -89,6 +121,6 @@ public class Database {
 	}
 	
 	private void updateIngredients(String product) {
-		
+
 	}
 }
