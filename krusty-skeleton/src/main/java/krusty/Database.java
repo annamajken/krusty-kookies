@@ -45,9 +45,9 @@ public class Database {
 	public String getCustomers(Request req, Response res) {
 		String sql = "SELECT name, address FROM Customers";
 		
-		try(PreparedStatement ps = connection.prepareStatement(sql)){
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
-			String json = Jsonizer.toJson(rs, "customers");
+			String json = JSONizer.toJSON(rs, "customers");
 			return json;
 			
 		} catch (SQLException exception) {
@@ -59,7 +59,19 @@ public class Database {
 	}
 	
 	public String getRawMaterials(Request req, Response res) {
-		return "{}";
+		String sql = "SELECT name, quantity, unit FROM Ingredients";
+
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery();
+			String json = JSONizer.toJSON(rs, "raw-materials");
+			return json;
+
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+			return "{ \r\n  \"status\": \"error\" \r\n}";
+			
+		}
 	}
 
 	public String getCookies(Request req, Response res) {
