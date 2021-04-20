@@ -43,9 +43,21 @@ public class Database {
 	// TODO: Implement and change output in all methods below!
 
 	public String getCustomers(Request req, Response res) {
-		return "{}";
+		String sql = "SELECT name, address FROM Customers";
+		
+		try(PreparedStatement ps = connection.prepareStatement(sql)){
+			ResultSet rs = ps.executeQuery();
+			String json = Jsonizer.toJson(rs, "customers");
+			return json;
+			
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+			return "{ \r\n  \"status\": \"error\" \r\n}";
+			
+		}
 	}
-
+	
 	public String getRawMaterials(Request req, Response res) {
 		return "{}";
 	}
@@ -106,12 +118,12 @@ public class Database {
 		// Insert customers
 		insertCustomer("Bjudkakor AB", "Ystad");
 		insertCustomer("Finkakor AB", "Helsingborg");
-		insertCustomer("Gästkakor AB", "Hässleholm");
-		insertCustomer("Kaffebröd AB", "Landskrona");
+		insertCustomer("Gï¿½stkakor AB", "Hï¿½ssleholm");
+		insertCustomer("Kaffebrï¿½d AB", "Landskrona");
 		insertCustomer("Kalaskakor AB", "Trelleborg");
 		insertCustomer("Partykakor AB", "Kristianstad");
-		insertCustomer("Skånekakor AB", "Perstorp");
-		insertCustomer("Småbröd AB", "Malmö");
+		insertCustomer("Skï¿½nekakor AB", "Perstorp");
+		insertCustomer("Smï¿½brï¿½d AB", "Malmï¿½");
 		// Insert cookies
 		insertProduct("Almond delight");
 		insertProduct("Amneris");
