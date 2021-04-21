@@ -23,7 +23,7 @@ public class Database {
 	/**
 	 * Modify it to fit your environment and then use this string when connecting to your database!
 	 */
-	private static final String jdbcString = "jdbc:mysql://puccini.cs.lth.se/";
+	private static final String jdbcString = "jdbc:mysql://puccini.cs.lth.se/db08";
 	
 	// For use with MySQL or PostgreSQL
 	private static final String jdbcUsername = "db08";
