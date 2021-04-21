@@ -40,7 +40,7 @@ CREATE TABLE Customers (
 customerID int AUTO_INCREMENT,
 address varChar(60),
 name varChar(40),
-PRIMARY KEY (customerID),
+PRIMARY KEY (customerID)
 );
 
 CREATE TABLE Orders (
@@ -66,6 +66,6 @@ orderNbr int,
 productID int,
 quantity int,
 PRIMARY KEY (orderNbr, productID),
-FOREIGN KEY orderNbr REFERENCES Orders (orderNbr),
-FOREIGN KEY productID REFERENCES Products (productID)
+FOREIGN KEY (orderNbr) REFERENCES Orders (orderNbr),
+FOREIGN KEY (productID) REFERENCES Products (productID)
 );
