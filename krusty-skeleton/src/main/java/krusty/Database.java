@@ -47,7 +47,7 @@ public class Database {
 		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
-			String json = JSONizer.toJSON(rs, "customers");
+			String json = Jsonizer.toJson(rs, "customers");
 			return json;
 			
 		} catch (SQLException exception) {
@@ -63,7 +63,7 @@ public class Database {
 
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
-			String json = JSONizer.toJSON(rs, "raw-materials");
+			String json = Jsonizer.toJson(rs, "raw-materials");
 			return json;
 
 		} catch (SQLException exception) {
@@ -109,7 +109,7 @@ public class Database {
 				ps.setString(i+1, values.get(i)); 
 			}
 			ResultSet rs = ps.executeQuery();
-			String json = JSONizer.toJSON(rs, "pallets");
+			String json = Jsonizer.toJson(rs, "pallets");
 			return json;
 		} catch (SQLException exception) {
 			System.err.println(exception);
@@ -300,4 +300,5 @@ public class Database {
 			exception.printStackTrace();
 		}
 	}
+	
 }
