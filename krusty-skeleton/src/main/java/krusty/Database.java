@@ -84,7 +84,7 @@ public class Database {
 
 	public String getPallets(Request req, Response res) {
 		ArrayList<String> values = new ArrayList<String>();
-		String sql = "SELECT palletNbr AS id, cookieName AS cookie,"
+		String sql = "SELECT palletNbr AS id, productName AS cookie,"
 				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no')"
 				+ " FROM Pallets LEFT JOIN Products ON Products.productID = Pallets.productID"
 				+ " LEFT JOIN Orders ON Orders.orderNbr = Products.orderNbr"
