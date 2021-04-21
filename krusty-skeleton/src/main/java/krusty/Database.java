@@ -114,7 +114,7 @@ public class Database {
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
-			return "{ \r\n  \"status\": \"error\" \r\n}";
+			return Jsonizer.anythingToJson("error", "status");
 		}
 	}
 
@@ -144,12 +144,12 @@ public class Database {
 		// Insert customers
 		insertCustomer("Bjudkakor AB", "Ystad");
 		insertCustomer("Finkakor AB", "Helsingborg");
-		insertCustomer("Gï¿½stkakor AB", "Hï¿½ssleholm");
-		insertCustomer("Kaffebrï¿½d AB", "Landskrona");
+		insertCustomer("Gästkakor AB", "Hässleholm");
+		insertCustomer("Kaffebröd AB", "Landskrona");
 		insertCustomer("Kalaskakor AB", "Trelleborg");
 		insertCustomer("Partykakor AB", "Kristianstad");
-		insertCustomer("Skï¿½nekakor AB", "Perstorp");
-		insertCustomer("Smï¿½brï¿½d AB", "Malmï¿½");
+		insertCustomer("Skånekakor AB", "Perstorp");
+		insertCustomer("Småbröd AB", "Malmö");
 		// Insert cookies
 		insertProduct("Almond delight");
 		insertProduct("Amneris");
@@ -209,7 +209,7 @@ public class Database {
 		insertRecipe("Tango", "Sodium bicarbonate", 4);
 		insertRecipe("Tango", "Sugar", 250);
 		insertRecipe("Tango", "Vanilla", 2);
-		return "{ \r\n  \"status\": \"ok\" \r\n}";
+		return Jsonizer.anythingToJson("ok", "status");
 	}
 	
 	// Helper method
@@ -267,11 +267,11 @@ public class Database {
 		try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM Products WHERE name = ?")) {
 			ps.setString(1, product);
 			ResultSet rs = ps.executeQuery();
-			if (!rs.next()) return "{ \r\n  \"status\": \"unknown cookie\" \r\n}";
+			if (!rs.next()) return Jsonizer.anythingToJson("unknown cookie", "status");;
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
-			return "{ \r\n  \"status\": \"error\" \r\n}";
+			return Jsonizer.anythingToJson("error", "status");
 		}
 		
 		try (PreparedStatement ps = connection.prepareStatement(
@@ -284,7 +284,7 @@ public class Database {
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
-			return "{ \r\n  \"status\": \"error\" \r\n}";
+			return Jsonizer.anythingToJson("error", "status");
 		}
 	}
 	
