@@ -87,8 +87,8 @@ public class Database {
 		String sql = "SELECT palletNbr AS id, productName AS cookie,"
 				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no')"
 				+ " FROM Pallets LEFT JOIN Products ON Products.productID = Pallets.productID"
-				+ " LEFT JOIN Orders ON Orders.orderNbr = Products.orderNbr"
-				+ " LEFT JOIN Customers ON Orders.customer = customer.customerID"
+				+ " LEFT JOIN Orders ON Orders.orderNbr = Pallets.orderNbr"
+				+ " LEFT JOIN Customers ON Orders.customer = Customers.customerID"
 				+ " WHERE 1=1";
 		
 		if (req.queryParams("cookie") != null) {
@@ -264,7 +264,7 @@ public class Database {
 
 	public String createPallet(Request req, Response res) {
 		String product = req.queryParams("cookie");
-		try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM Products WHERE name = ?")) {
+		try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM Products WHERE productName = ?")) {
 			ps.setString(1, product);
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) return Jsonizer.anythingToJson("unknown cookie", "status");;
@@ -275,12 +275,23 @@ public class Database {
 		}
 		
 		try (PreparedStatement ps = connection.prepareStatement(
-				"INSERT INTO Pallets (productID) SELECT productID FROM Products WHERE name = ?",
+				"INSERT INTO Pallets (productID) SELECT productID FROM Products WHERE productName = ?",
 				Statement.RETURN_GENERATED_KEYS)) {
 			ps.setString(1, product);
-			ResultSet rs = ps.executeQuery();
+			ps.executeUpdate();
 			updateWarehouse(product);
-			return "{ \r\n  \"status\": \"ok\", \r\n  \"id\": " + rs.getInt("productID") + " \r\n}}";
+				try (PreparedStatement stmt = connection.prepareStatement("SELECT productID FROM Products WHERE productName = ?")) {
+					stmt.setString(1, product);
+					ResultSet rs = stmt.executeQuery();
+					if (rs.next()) {
+						return "{ \r\n  \"status\": \"ok\", \r\n  \"id\": " + rs.getInt("productID") + " \r\n}}";
+					}
+					return Jsonizer.anythingToJson("error", "status");
+				} catch (SQLException exception) {
+					System.err.println(exception);
+					exception.printStackTrace();
+					return Jsonizer.anythingToJson("error", "status");
+				}
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
@@ -297,21 +308,20 @@ public class Database {
 			ps.setString(1, product);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				values.put(rs.getString("rawMaterial"), rs.getInt("amount"));
+				values.put(rs.getString("rawMaterial"), rs.getInt("amount"));	// Value = rawMaterial, Key = amount
 			}
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
 		}
-		try (PreparedStatement ps = connection.prepareStatement("ALTER TABLE Ingredients SET amount = amount - ? WHERE rawMaterial = ?")) {
-			for (Entry<String, Integer> entry : values.entrySet()) {
-				ps.setInt(1, entry.getValue());
-				ps.setString(2, entry.getKey());
+		for (Entry<String, Integer> entry : values.entrySet()) {
+			try (PreparedStatement ps = connection.prepareStatement("UPDATE Ingredients SET quantity=quantity-" + entry.getValue() + " WHERE name = ?")) {
+				ps.setString(1, entry.getKey());
 				ps.executeUpdate();
+			} catch (SQLException exception) {
+				System.err.println(exception);
+				exception.printStackTrace();
 			}
-		} catch (SQLException exception) {
-			System.err.println(exception);
-			exception.printStackTrace();
 		}
 	}
 	
