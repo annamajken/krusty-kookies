@@ -144,12 +144,12 @@ public class Database {
 		// Insert customers
 		insertCustomer("Bjudkakor AB", "Ystad");
 		insertCustomer("Finkakor AB", "Helsingborg");
-		insertCustomer("Gästkakor AB", "Hässleholm");
-		insertCustomer("Kaffebröd AB", "Landskrona");
+		insertCustomer("GÃ¤stkakor AB", "HÃ¤ssleholm");
+		insertCustomer("KaffebrÃ¶d AB", "Landskrona");
 		insertCustomer("Kalaskakor AB", "Trelleborg");
 		insertCustomer("Partykakor AB", "Kristianstad");
-		insertCustomer("Skånekakor AB", "Perstorp");
-		insertCustomer("Småbröd AB", "Malmö");
+		insertCustomer("SkÃ¥nekakor AB", "Perstorp");
+		insertCustomer("SmÃ¥brÃ¶d AB", "MalmÃ¶");
 		// Insert cookies
 		insertProduct("Almond delight");
 		insertProduct("Amneris");
