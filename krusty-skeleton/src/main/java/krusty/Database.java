@@ -315,10 +315,4 @@ public class Database {
 		}
 	}
 	
-	public static void main(String[] args) {
-		Database db = new Database();
-		db.connect();
-		System.out.println(db.reset(null, null));
-		System.out.println("Skriva saker");
-	}
 }
