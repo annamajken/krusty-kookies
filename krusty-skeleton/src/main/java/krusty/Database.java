@@ -119,9 +119,23 @@ public class Database {
 	}
 
 	public String reset(Request req, Response res) {
-		// Clear all tables
-		try (PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE Ingredients,"
-				+ " Products, Recipes, Customers, Orders, Pallets, OrderSpecs")) {
+		// SET FOREIGN KEYS = 0
+		try (PreparedStatement ps = connection.prepareStatement("SET FOREIGN_KEY_CHECKS = 0")) {
+			ps.executeUpdate();
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+		}
+		String[] toTruncate = {"Ingredients", "Products", "Recipes", "Customers", "Orders", "Pallets", "OrderSpecs"};
+		for(String string : toTruncate) {
+			try (PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE " + string)) {
+				ps.executeUpdate();
+			} catch (SQLException exception) {
+				System.err.println(exception);
+				exception.printStackTrace();
+			}
+		}
+		try (PreparedStatement ps = connection.prepareStatement("SET FOREIGN_KEY_CHECKS = 1")) {
 			ps.executeUpdate();
 		} catch (SQLException exception) {
 			System.err.println(exception);
@@ -212,7 +226,7 @@ public class Database {
 	
 	// Helper method
 	private void insertProduct(String productName) {
-		try (PreparedStatement ps = connection.prepareStatement("INSERT INTO Cookies(productName) VALUES (?)")) {
+		try (PreparedStatement ps = connection.prepareStatement("INSERT INTO Products(productName) VALUES (?)")) {
 			ps.setString(1, productName);
 			ps.executeUpdate();
 		} catch (SQLException exception) {
@@ -301,4 +315,10 @@ public class Database {
 		}
 	}
 	
+	public static void main(String[] args) {
+		Database db = new Database();
+		db.connect();
+		System.out.println(db.reset(null, null));
+		System.out.println("Skriva saker");
+	}
 }
