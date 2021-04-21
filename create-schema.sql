@@ -31,7 +31,7 @@ CREATE TABLE Recipes (
 productID int,
 rawMaterial varChar(30),
 amount int,
-PRIMARY KEY (productName, rawMaterial),
+PRIMARY KEY (productID, rawMaterial),
 FOREIGN KEY (rawMaterial) REFERENCES Ingredients (name),
 FOREIGN KEY (productID) REFERENCES Products (productID)
 );
