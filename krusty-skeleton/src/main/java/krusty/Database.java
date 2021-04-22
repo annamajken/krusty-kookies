@@ -53,7 +53,7 @@ public class Database {
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
-			return "{ \r\n  \"status\": \"error\" \r\n}";
+			return Jsonizer.anythingToJson("error", "status");
 			
 		}
 	}
@@ -69,8 +69,7 @@ public class Database {
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
-			return "{ \r\n  \"status\": \"error\" \r\n}";
-			
+			return Jsonizer.anythingToJson("error", "status");			
 		}
 	}
 
