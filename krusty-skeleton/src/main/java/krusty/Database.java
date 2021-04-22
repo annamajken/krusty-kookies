@@ -4,11 +4,13 @@ import spark.Request;
 import spark.Response;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -82,7 +84,9 @@ public class Database {
 	}
 
 	public String getPallets(Request req, Response res) {
-		ArrayList<String> values = new ArrayList<String>();
+		String cookie = req.queryParams("cookie");
+		String dateFrom = req.queryParams("from");
+		String dateTo = req.queryParams("to");
 		String sql = "SELECT palletNbr AS id, productName AS cookie,"
 				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no')"
 				+ " FROM Pallets LEFT JOIN Products ON Products.productID = Pallets.productID"
@@ -90,23 +94,15 @@ public class Database {
 				+ " LEFT JOIN Customers ON Orders.customer = Customers.customerID"
 				+ " WHERE 1=1";
 		
-		if (req.queryParams("cookie") != null) {
-			sql += " AND productName = ?";
-			values.add(req.queryParams("cookie"));
-		}
-		if (req.queryParams("from") != null) {
-			sql += "AND dateAndTimeOfProduction > ?";
-			values.add(req.queryParams("from"));
-		}
-		if (req.queryParams("to") != null) {
-			sql += " AND dateAndTimeOfProduction < ?";
-			values.add(req.queryParams("to"));
-		}
+		if (cookie != null) sql += " AND productName = ?";
+		if (dateFrom != null) sql += "AND dateAndTimeOfProduction > ?";
+		if (dateTo != null) sql += " AND dateAndTimeOfProduction < ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			for (int i = 0; i < values.size(); i++) {
-				ps.setString(i+1, values.get(i)); 
-			}
+			int index = 1;
+			if (cookie != null) {ps.setString(index, cookie); index++;}
+			if (dateFrom != null) {ps.setTimestamp(index, Timestamp.valueOf(dateFrom + " 00:00:00")); index++;}
+			if (dateTo != null) ps.setTimestamp(index, Timestamp.valueOf(dateTo + " 00:00:00"));
 			ResultSet rs = ps.executeQuery();
 			String json = Jsonizer.toJson(rs, "pallets");
 			return json;
