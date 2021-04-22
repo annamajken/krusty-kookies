@@ -90,6 +90,19 @@ public class Database {
 	}
 
 	public String getRecipes(Request req, Response res) {
+		String sql = "SELECT Products.ProductName as cookie, Recipes.rawMaterial as raw_material, "
+				+ "Recipes.amount "
+				+ "FROM Products, Recipes "
+				+ "WHERE Products.productID = Recipes.productID "
+				+ "ORDER BY cookie";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery(); 
+			String json = Jsonizer.toJson(rs, "recipies");
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+			return Jsonizer.anythingToJson("error", "status");
+		}
 		return "{}";
 	}
 
