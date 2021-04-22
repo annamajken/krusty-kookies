@@ -164,7 +164,7 @@ public class Database {
 		insertIngredient("Eggs", 500000, "g");
 		insertIngredient("Fine-ground nuts", 500000, "g");
 		insertIngredient("Flour", 500000, "g");
-		insertIngredient("Ground, rousted nuts", 500000, "g");
+		insertIngredient("Ground, roasted nuts", 500000, "g");
 		insertIngredient("Icing sugar", 500000, "g");
 		insertIngredient("Marzipan", 500000, "g");
 		insertIngredient("Potato starch", 500000, "g");
@@ -213,7 +213,7 @@ public class Database {
 	private void insertCustomer(String name, String address) {
 		try (PreparedStatement ps = connection.prepareStatement("INSERT INTO Customers(name, address) VALUES (?, ?)")) {
 			ps.setString(1, name);
-			ps.setString(2, name);
+			ps.setString(2, address);
 			ps.executeUpdate();
 		} catch (SQLException exception) {
 			System.err.println(exception);
@@ -270,7 +270,7 @@ public class Database {
 			ResultSet generatedKeys = ps.getGeneratedKeys();
 			if (generatedKeys.next()) {
 				updateWarehouse(product);
-				return "{ \r\n  \"status\": \"ok\", \r\n  \"id\": " + generatedKeys.getInt(1) + " \r\n}}";
+				return "{\"status\": \"ok\", \"id\": " + generatedKeys.getInt(1) + "}}";
 			} else {
 				return Jsonizer.anythingToJson("unknown cookie", "status");
 			}
