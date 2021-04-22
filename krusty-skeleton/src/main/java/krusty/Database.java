@@ -160,7 +160,7 @@ public class Database {
 		insertIngredient("Chocolate", 500000, "g");
 		insertIngredient("Chopped almonds", 500000, "g");
 		insertIngredient("Cinnamon", 500000, "g");
-		insertIngredient("Egg whites", 500000, "g");
+		insertIngredient("Egg whites", 500000, "ml");
 		insertIngredient("Eggs", 500000, "g");
 		insertIngredient("Fine-ground nuts", 500000, "g");
 		insertIngredient("Flour", 500000, "g");
