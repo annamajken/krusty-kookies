@@ -298,15 +298,15 @@ public class Database {
 			exception.printStackTrace();
 		}
 		
-		for (Entry<String, Integer> entry : values.entrySet()) {
-			try (PreparedStatement ps = connection.prepareStatement("UPDATE Ingredients SET quantity=quantity-? WHERE name = ?")) {
+		try (PreparedStatement ps = connection.prepareStatement("UPDATE Ingredients SET quantity=quantity-? WHERE name = ?")) {
+			for (Entry<String, Integer> entry : values.entrySet()) {
 				ps.setInt(1, entry.getValue());
 				ps.setString(2, entry.getKey());
 				ps.executeUpdate();
-			} catch (SQLException exception) {
-				System.err.println(exception);
-				exception.printStackTrace();
 			}
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
 		}
 	}
 	
