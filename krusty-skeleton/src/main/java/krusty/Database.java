@@ -195,7 +195,7 @@ public class Database {
 		insertRecipe("Nut cookie", "Chocolate", 50);
 		insertRecipe("Nut cookie", "Egg whites", 350);
 		insertRecipe("Nut cookie", "Fine-ground nuts", 750);
-		insertRecipe("Nut cookie", "Ground, rousted nuts", 625);
+		insertRecipe("Nut cookie", "Ground, roasted nuts", 625);
 		insertRecipe("Nut cookie", "Sugar", 375);
 		insertRecipe("Nut ring", "Butter", 450);
 		insertRecipe("Nut ring", "Flour", 450);
@@ -297,6 +297,7 @@ public class Database {
 			System.err.println(exception);
 			exception.printStackTrace();
 		}
+		
 		for (Entry<String, Integer> entry : values.entrySet()) {
 			try (PreparedStatement ps = connection.prepareStatement("UPDATE Ingredients SET quantity=quantity-? WHERE name = ?")) {
 				ps.setInt(1, entry.getValue());
