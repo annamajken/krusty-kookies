@@ -259,42 +259,27 @@ public class Database {
 		}
 	}
 
-	public String createPallet(Request req, Response res) {
+	public String createPallet(Request req, Response res) {		
 		String product = req.queryParams("cookie");
-		try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM Products WHERE productName = ?")) {
-			ps.setString(1, product);
-			ResultSet rs = ps.executeQuery();
-			if (!rs.next()) return Jsonizer.anythingToJson("unknown cookie", "status");;
-		} catch (SQLException exception) {
-			System.err.println(exception);
-			exception.printStackTrace();
-			return Jsonizer.anythingToJson("error", "status");
-		}
-		
 		try (PreparedStatement ps = connection.prepareStatement(
 				"INSERT INTO Pallets (productID) SELECT productID FROM Products WHERE productName = ?",
 				Statement.RETURN_GENERATED_KEYS)) {
 			ps.setString(1, product);
 			ps.executeUpdate();
-			updateWarehouse(product);
-				try (PreparedStatement stmt = connection.prepareStatement("SELECT productID FROM Products WHERE productName = ?")) {
-					stmt.setString(1, product);
-					ResultSet rs = stmt.executeQuery();
-					if (rs.next()) {
-						return "{ \r\n  \"status\": \"ok\", \r\n  \"id\": " + rs.getInt("productID") + " \r\n}}";
-					}
-					return Jsonizer.anythingToJson("error", "status");
-				} catch (SQLException exception) {
-					System.err.println(exception);
-					exception.printStackTrace();
-					return Jsonizer.anythingToJson("error", "status");
-				}
+			ResultSet generatedKeys = ps.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				updateWarehouse(product);
+				return "{ \r\n  \"status\": \"ok\", \r\n  \"id\": " + generatedKeys.getInt(1) + " \r\n}}";
+			} else {
+				return Jsonizer.anythingToJson("unknown cookie", "status");
+			}
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
 			return Jsonizer.anythingToJson("error", "status");
 		}
 	}
+	
 	
 	// Helper method
 	private void updateWarehouse(String product) {
