@@ -102,7 +102,7 @@ public class Database {
 			int index = 1;
 			if (cookie != null) {ps.setString(index, cookie); index++;}
 			if (dateFrom != null) {ps.setTimestamp(index, Timestamp.valueOf(dateFrom + " 00:00:00")); index++;}
-			if (dateTo != null) ps.setTimestamp(index, Timestamp.valueOf(dateTo + " 00:00:00"));
+			if (dateTo != null) ps.setTimestamp(index, Timestamp.valueOf(dateTo + " 23:59:59"));
 			ResultSet rs = ps.executeQuery();
 			String json = Jsonizer.toJson(rs, "pallets");
 			return json;
