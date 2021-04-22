@@ -298,7 +298,7 @@ public class Database {
 			exception.printStackTrace();
 		}
 		
-		try (PreparedStatement ps = connection.prepareStatement("UPDATE Ingredients SET quantity=quantity-? WHERE name = ?")) {
+		try (PreparedStatement ps = connection.prepareStatement("UPDATE Ingredients SET quantity=quantity-54*? WHERE name = ?")) {
 			for (Entry<String, Integer> entry : values.entrySet()) {
 				ps.setInt(1, entry.getValue());
 				ps.setString(2, entry.getKey());
