@@ -89,7 +89,7 @@ public class Database {
 		String dateTo = req.queryParams("to");
 		String blocked = req.queryParams("blocked");
 		String sql = "SELECT palletNbr AS id, productName AS cookie,"
-				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no')"
+				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no') AS blocked"
 				+ " FROM Pallets LEFT JOIN Products ON Products.productID = Pallets.productID"
 				+ " LEFT JOIN Orders ON Orders.orderNbr = Pallets.orderNbr"
 				+ " LEFT JOIN Customers ON Orders.customer = Customers.customerID"
@@ -108,6 +108,7 @@ public class Database {
 			if (blocked != null) {ps.setBoolean(index, blocked == "yes");}
 			ResultSet rs = ps.executeQuery();
 			String json = Jsonizer.toJson(rs, "pallets");
+			System.out.println(json);
 			return json;
 		} catch (SQLException exception) {
 			System.err.println(exception);
