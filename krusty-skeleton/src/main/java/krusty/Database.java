@@ -262,7 +262,8 @@ public class Database {
 	public String createPallet(Request req, Response res) {		
 		String product = req.queryParams("cookie");
 		try (PreparedStatement ps = connection.prepareStatement(
-				"INSERT INTO Pallets (productID) SELECT productID FROM Products WHERE productName = ?",
+				"INSERT INTO Pallets (dateAndTimeOfProduction, productID) "
+				+ "SELECT NOW(), productID FROM Products WHERE productName = ?",
 				Statement.RETURN_GENERATED_KEYS)) {
 			ps.setString(1, product);
 			ps.executeUpdate();
@@ -297,8 +298,9 @@ public class Database {
 			exception.printStackTrace();
 		}
 		for (Entry<String, Integer> entry : values.entrySet()) {
-			try (PreparedStatement ps = connection.prepareStatement("UPDATE Ingredients SET quantity=quantity-" + entry.getValue() + " WHERE name = ?")) {
-				ps.setString(1, entry.getKey());
+			try (PreparedStatement ps = connection.prepareStatement("UPDATE Ingredients SET quantity=quantity-? WHERE name = ?")) {
+				ps.setInt(1, entry.getValue());
+				ps.setString(2, entry.getKey());
 				ps.executeUpdate();
 			} catch (SQLException exception) {
 				System.err.println(exception);
