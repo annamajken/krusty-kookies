@@ -107,9 +107,7 @@ public class Database {
 			if (dateTo != null) {ps.setTimestamp(index, Timestamp.valueOf(dateTo + " 23:59:59")); index++;}
 			if (blocked != null) {ps.setBoolean(index, blocked == "yes");}
 			ResultSet rs = ps.executeQuery();
-			String json = Jsonizer.toJson(rs, "pallets");
-			System.out.println(json);
-			return json;
+			return Jsonizer.toJson(rs, "pallets");
 		} catch (SQLException exception) {
 			System.err.println(exception);
 			exception.printStackTrace();
