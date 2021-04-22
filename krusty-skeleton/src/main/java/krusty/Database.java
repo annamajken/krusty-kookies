@@ -61,7 +61,7 @@ public class Database {
 	}
 	
 	public String getRawMaterials(Request req, Response res) {
-		String sql = "SELECT name, quantity, unit FROM Ingredients";
+		String sql = "SELECT name, quantity AS amount, unit FROM Ingredients";
 
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
@@ -87,6 +87,7 @@ public class Database {
 		String cookie = req.queryParams("cookie");
 		String dateFrom = req.queryParams("from");
 		String dateTo = req.queryParams("to");
+		String blocked = req.queryParams("blocked");
 		String sql = "SELECT palletNbr AS id, productName AS cookie,"
 				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no')"
 				+ " FROM Pallets LEFT JOIN Products ON Products.productID = Pallets.productID"
@@ -97,12 +98,14 @@ public class Database {
 		if (cookie != null) sql += " AND productName = ?";
 		if (dateFrom != null) sql += "AND dateAndTimeOfProduction > ?";
 		if (dateTo != null) sql += " AND dateAndTimeOfProduction < ?";
+		if (blocked != null) sql += " AND blocked = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			int index = 1;
 			if (cookie != null) {ps.setString(index, cookie); index++;}
 			if (dateFrom != null) {ps.setTimestamp(index, Timestamp.valueOf(dateFrom + " 00:00:00")); index++;}
-			if (dateTo != null) ps.setTimestamp(index, Timestamp.valueOf(dateTo + " 23:59:59"));
+			if (dateTo != null) {ps.setTimestamp(index, Timestamp.valueOf(dateTo + " 23:59:59")); index++;}
+			if (blocked != null) {ps.setBoolean(index, blocked == "yes");}
 			ResultSet rs = ps.executeQuery();
 			String json = Jsonizer.toJson(rs, "pallets");
 			return json;
