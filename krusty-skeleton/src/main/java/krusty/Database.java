@@ -76,6 +76,16 @@ public class Database {
 	}
 
 	public String getCookies(Request req, Response res) {
+		String sql = "SELECT ProductName FROM Products";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery();
+			String json = Jsonizer.toJson(rs, "cookies");
+			return json;
+		} catch (SQLException exception) {
+			System.err.println(exception);
+			exception.printStackTrace();
+			return Jsonizer.anythingToJson("error", "status");
+		}
 		return "{\"cookies\":[]}";
 	}
 
