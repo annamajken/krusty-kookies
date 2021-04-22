@@ -61,7 +61,7 @@ public class Database {
 	}
 	
 	public String getRawMaterials(Request req, Response res) {
-		String sql = "SELECT name, quantity, unit FROM Ingredients";
+		String sql = "SELECT name, quantity AS amount, unit FROM Ingredients";
 
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
