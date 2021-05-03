@@ -76,7 +76,8 @@ public class Database {
 	}
 
 	public String getCookies(Request req, Response res) {
-		String sql = "SELECT ProductName FROM Products";
+		String sql = "SELECT productName AS name FROM Products"
+				+ " WHERE productID IN (SELECT DISTINCT productID FROM Products)";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 			String json = Jsonizer.toJson(rs, "cookies");
@@ -86,7 +87,6 @@ public class Database {
 			exception.printStackTrace();
 			return Jsonizer.anythingToJson("error", "status");
 		}
-		return "{\"cookies\":[]}";
 	}
 
 	public String getRecipes(Request req, Response res) {
