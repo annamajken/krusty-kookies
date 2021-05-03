@@ -58,7 +58,8 @@ dateAndTimeOfDelivery DATETIME,
 orderNbr int,
 blocked boolean NOT NULL DEFAULT FALSE,
 PRIMARY KEY (palletNbr),
-FOREIGN KEY (productID) REFERENCES Products (productID)
+FOREIGN KEY (productID) REFERENCES Products (productID),
+FOREIGN KEY (orderNbr) REFERENCES Orders (orderNbr)
 );
 
 CREATE TABLE OrderSpecs (
