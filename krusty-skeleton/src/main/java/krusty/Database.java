@@ -119,7 +119,7 @@ public class Database {
 				+ " WHERE 1=1";
 		
 		if (cookie != null) sql += " AND productName = ?";
-		if (dateFrom != null) sql += "AND dateAndTimeOfProduction > ?";
+		if (dateFrom != null) sql += " AND dateAndTimeOfProduction > ?";
 		if (dateTo != null) sql += " AND dateAndTimeOfProduction < ?";
 		if (blocked != null) sql += " AND blocked = ?";
 
