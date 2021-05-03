@@ -128,7 +128,7 @@ public class Database {
 			if (cookie != null) {ps.setString(index, cookie); index++;}
 			if (dateFrom != null) {ps.setTimestamp(index, Timestamp.valueOf(dateFrom + " 00:00:00")); index++;}
 			if (dateTo != null) {ps.setTimestamp(index, Timestamp.valueOf(dateTo + " 23:59:59")); index++;}
-			if (blocked != null) {ps.setBoolean(index, blocked == "yes");}
+			if (blocked != null) {ps.setBoolean(index, blocked.equals("yes"));}
 			ResultSet rs = ps.executeQuery();
 			return Jsonizer.toJson(rs, "pallets");
 		} catch (SQLException exception) {
