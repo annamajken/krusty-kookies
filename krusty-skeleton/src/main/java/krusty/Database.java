@@ -112,7 +112,7 @@ public class Database {
 		String dateTo = req.queryParams("to");
 		String blocked = req.queryParams("blocked");
 		String sql = "SELECT palletNbr AS id, productName AS cookie,"
-				+ "dateAndTimeOfProduction AS production_date, name, IF(blocked, 'yes', 'no') AS blocked"
+				+ " dateAndTimeOfProduction AS production_date, name, IF(blocked, \"yes\", \"no\") AS blocked"
 				+ " FROM Pallets LEFT JOIN Products ON Products.productID = Pallets.productID"
 				+ " LEFT JOIN Orders ON Orders.orderNbr = Pallets.orderNbr"
 				+ " LEFT JOIN Customers ON Orders.customer = Customers.customerID"
@@ -293,7 +293,7 @@ public class Database {
 			ResultSet generatedKeys = ps.getGeneratedKeys();
 			if (generatedKeys.next()) {
 				updateWarehouse(product);
-				return "{\"status\": \"ok\", \"id\": " + generatedKeys.getInt(1) + "}}";
+				return "{\"status\": \"ok\", \"id\": " + generatedKeys.getInt(1) + "}";
 			} else {
 				return Jsonizer.anythingToJson("unknown cookie", "status");
 			}
@@ -303,7 +303,6 @@ public class Database {
 			return Jsonizer.anythingToJson("error", "status");
 		}
 	}
-	
 	
 	// Helper method
 	private void updateWarehouse(String product) {
