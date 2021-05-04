@@ -29,10 +29,10 @@ PRIMARY KEY (productID)
 
 CREATE TABLE Recipes (
 productID int,
-rawMaterial varChar(30),
+ingredient varChar(30),
 amount int,
-PRIMARY KEY (productID, rawMaterial),
-FOREIGN KEY (rawMaterial) REFERENCES Ingredients (name),
+PRIMARY KEY (productID, ingredient),
+FOREIGN KEY (ingredient) REFERENCES Ingredients (name),
 FOREIGN KEY (productID) REFERENCES Products (productID)
 );
 
