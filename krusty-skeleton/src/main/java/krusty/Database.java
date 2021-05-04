@@ -90,7 +90,7 @@ public class Database {
 	}
 
 	public String getRecipes(Request req, Response res) {
-		String sql = "SELECT Products.ProductName as cookie, Recipes.rawMaterial as raw_material, "
+		String sql = "SELECT Products.ProductName as cookie, Recipes.ingredient as raw_material, "
 				+ "Recipes.amount "
 				+ "FROM Products, Recipes "
 				+ "WHERE Products.productID = Recipes.productID "
@@ -269,10 +269,10 @@ public class Database {
 	}
 	
 	// Helper method
-	private void insertRecipe(String productName, String rawMaterial, int amount) {
-		try (PreparedStatement ps = connection.prepareStatement("INSERT INTO Recipes(productID, rawMaterial, amount)"
+	private void insertRecipe(String productName, String ingredient, int amount) {
+		try (PreparedStatement ps = connection.prepareStatement("INSERT INTO Recipes(productID, ingredient, amount)"
 				+ " SELECT productID, ?, ? FROM Products WHERE Products.productName = ?")) {
-			ps.setString(1, rawMaterial);
+			ps.setString(1, ingredient);
 			ps.setInt(2, amount);
 			ps.setString(3, productName);
 			ps.executeUpdate();
@@ -307,13 +307,13 @@ public class Database {
 	// Helper method
 	private void updateWarehouse(String product) {
 		Map<String, Integer> values = new HashMap<String, Integer>();
-		try (PreparedStatement ps = connection.prepareStatement("SELECT rawMaterial, amount"
+		try (PreparedStatement ps = connection.prepareStatement("SELECT ingredient, amount"
 				+ " FROM Recipes LEFT JOIN Products on Recipes.productID = Products.productID"
 				+ " WHERE Products.productName = ?")) {
 			ps.setString(1, product);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				values.put(rs.getString("rawMaterial"), rs.getInt("amount"));	// Value = rawMaterial, Key = amount
+				values.put(rs.getString("ingredient"), rs.getInt("amount"));
 			}
 		} catch (SQLException exception) {
 			System.err.println(exception);
