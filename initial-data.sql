@@ -1,5 +1,48 @@
 -- Fills the tables with default data --
 
+
+-- Inserts data into the Products table --
+INSERT INTO Products(productName)
+VALUES('Almond delight'),
+('Amneris'),
+('Berliner'),
+('Nut cookie'),
+('Nut ring'),
+('Tango');
+
+-- Inserts data into the Ingredients table --
+INSERT INTO Ingredients(name, quantity, unit)
+VALUES('Bread crumbs', 500000, 'g'),
+('Butter', 500000, 'g'),
+('Chocolate', 500000, 'g'),
+('Chopped almonds', 500000, 'g'),
+('Cinnamon', 500000, 'g'),
+('Egg whites', 500000, 'ml'),
+('Eggs', 500000, 'g'),
+('Fine-ground nuts', 500000, 'g'),
+('Flour', 500000, 'g'),
+('Ground, roasted nuts', 500000, 'g'),
+('Icing sugar', 500000, 'g'),
+('Marzipan', 500000, 'g'),
+('Potato starch', 500000, 'g'),
+('Roasted, chopped nuts', 500000, 'g'),
+('Sodium bicarbonate', 500000, 'g'),
+('Sugar', 500000, 'g'),
+('Vanilla sugar', 500000, 'g'),
+('Vanilla', 500000, 'g'),
+('Wheat flour', 500000, 'g');
+
+-- Inserts data into the Customers table --
+INSERT INTO Customers(name, address) 
+VALUES('Bjudkakor AB', 'Ystad'),
+('Finkakor AB', 'Helsingborg'),
+('Gästkakor AB', 'Hässleholm'),
+('Kaffebröd AB', 'Landskrona'),
+('Kalaskakor AB', 'Trelleborg'),
+('Partykakor AB', 'Kristianstad'),
+('Skånekakor AB', 'Perstorp'),
+('Småbröd AB', 'Malmö');
+
 -- Inserts data into the Recipes table --
 
 -- Almond Delight --
@@ -74,45 +117,3 @@ INSERT INTO Recipes(productName, ingredient, amount)
 VALUES('Tango', 'Sugar', 250);
 INSERT INTO Recipes(productName, ingredient, amount)
 VALUES('Tango', 'Vanilla', 2);
-
--- Inserts data into the Customers table --
-INSERT INTO Customers(name, address) 
-VALUES('Bjudkakor AB', 'Ystad'),
-('Finkakor AB', 'Helsingborg'),
-('Gästkakor AB', 'Hässleholm'),
-('Kaffebröd AB', 'Landskrona'),
-('Kalaskakor AB', 'Trelleborg'),
-('Partykakor AB', 'Kristianstad'),
-('Skånekakor AB', 'Perstorp'),
-('Småbröd AB', 'Malmö');
-
--- Inserts data into the Products table --
-INSERT INTO Products(productName)
-VALUES('Almond delight'),
-('Amneris'),
-('Berliner'),
-('Nut cookie'),
-('Nut ring'),
-('Tango');
-
--- Inserts data into the Ingredients table --
-INSERT INTO Ingredients(name, quantity, unit)
-VALUES('Bread crumbs', 500000, 'g'),
-('Butter', 500000, 'g'),
-('Chocolate', 500000, 'g'),
-('Chopped almonds', 500000, 'g'),
-('Cinnamon', 500000, 'g'),
-('Egg whites', 500000, 'ml'),
-('Eggs', 500000, 'g'),
-('Fine-ground nuts', 500000, 'g'),
-('Flour', 500000, 'g'),
-('Ground, roasted nuts', 500000, 'g'),
-('Icing sugar', 500000, 'g'),
-('Marzipan', 500000, 'g'),
-('Potato starch', 500000, 'g'),
-('Roasted, chopped nuts', 500000, 'g'),
-('Sodium bicarbonate', 500000, 'g'),
-('Sugar', 500000, 'g'),
-('Vanilla sugar', 500000, 'g'),
-('Vanilla', 500000, 'g'),
-('Wheat flour', 500000, 'g');
